@@ -1,13 +1,20 @@
-<h1>Login</h1>
-<form action="/login" methodo="POST">
-    <div>
-        <label for="usr">Username</label>
-        <input type="text" id="usr" name="usr" required>
-    </div>
-    <div>
-        <label for="psw">Password</label>
-        <input type="password" id="psw" name="psw" required>
-    </div>
-    <button type="submit">Login</button>
-</form>
-<p>Need an account? </p><a href="/register">Register</a>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <form method="POST" action="/login">
+    <label>Username:</label>
+    <input type="text" name="usr" placeholder="Inserisci username" required />
+    <br>
+    <label>Password:</label>
+    <input type="password" name="psw" placeholder="Inserisci password" required />
+    <br>
+    <button type="submit">Accedi</button>
+  </form>
+  <p>Don't have an accoun? <a href="/register">Register</a></p>
+</body>
+</html>
