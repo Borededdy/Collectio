@@ -2,3 +2,5 @@
 .gitignore
 .env
 node_modules
+sessions.sqlite
+USERS-DB.sqlite
