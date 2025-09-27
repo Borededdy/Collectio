@@ -9,11 +9,13 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-// === Configurazione View Engine ===
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// === Middleware ===
+app.use(express.static("public"))
+app.use(express.static("resources"))
+
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -21,11 +23,11 @@ app.use(
     secret: process.env.SESSION_SECRET || "defaultsecret",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 15 }, // 15 minuti
+    cookie: { maxAge: 1000 * 60 * 15 }, // 15 minutes
   })
 );
 
-// === Middleware di protezione ===
+// Protection middleware
 function requireLogin(req, res, next) {
   if (!req.session.userId) {
     return res.redirect("/login");
@@ -33,7 +35,6 @@ function requireLogin(req, res, next) {
   next();
 }
 
-// === Rotte ===
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -101,7 +102,6 @@ app.post("/logout", (req, res) => {
   });
 });
 
-// === Avvio server ===
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
